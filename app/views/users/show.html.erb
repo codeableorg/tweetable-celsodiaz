@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+<div>
+
+<% if @user.avatar.attached? %>
+  <div>
+    <%= image_tag @user.avatar, alt: "user avatar"%>
+  </div>
+<%end%>
+<p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Role:</strong>
+    <%= @user.role %>
+  </p>
+</div>
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
