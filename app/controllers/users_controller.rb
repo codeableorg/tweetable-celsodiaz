@@ -22,6 +22,10 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
+    unless @user.avatar.attached?
+      @user.avatar.attach(io: File.open("app/assets/images/avatar.png"),
+                         filename: "default_avatar.png")
+    end
 
     if @user.save
       redirect_to @user, notice: "User was successfully created."
