@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Tweets</h1>
+<h1>Home</h1>
+<%= render "tweets/form", { tweet: Tweet.new}%>
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
@@ -11,4 +12,3 @@
   <% end %>
 </div>
 
-<%= link_to "New tweet", new_tweet_path %>
