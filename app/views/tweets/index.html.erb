@@ -1,13 +1,12 @@
 
 <h1>Home</h1>
-<%= render "tweets/form", { tweet: Tweet.new}%>
+<%= render "tweets/form", { tweet: Tweet.new } %>
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
+    <% if tweet.replied_to_id.nil? %>
+      <%= render tweet %>
+    <% end %>
   <% end %>
 </div>
 

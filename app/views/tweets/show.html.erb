@@ -11,8 +11,10 @@
 
 <%= render "tweets/form", { tweet: Tweet.new}%>
 
-<div id="replies">
-  <% @replies.each do |reply| %>
-    <%= render reply %>
-  <% end %>
-</div>
+<% if @replies.present? %>
+  <div id="replies">
+    <% @replies.each do |reply| %>
+      <%= render reply %>
+    <% end %>
+  </div>
+<% end %>

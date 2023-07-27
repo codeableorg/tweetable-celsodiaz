@@ -40,6 +40,7 @@
     max-width: 100%; /* Ocupa todo el ancho disponible */
     display: flex;
     justify-content: flex-end;
+    height: 40px;
   }
   
   .replies-likes p {

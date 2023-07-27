@@ -19,6 +19,13 @@ class TweetsController < ApplicationController
     end
   end
 
+  def like
+    @tweet = Tweet.find(params[:id])
+    @tweet.increment!(:likes_count)
+    puts "Likes count after increment: #{@tweet.likes_count}"
+    render json: { likes_count: @tweet.likes_count }
+  end
+
   # GET /tweets/new
   def new
     @tweet = Tweet.new
