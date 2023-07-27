@@ -1,5 +1,3 @@
-# tweets_controller.rb
-
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[show edit update destroy]
 
@@ -12,7 +10,7 @@ class TweetsController < ApplicationController
   def show
     @tweet ||= Tweet.find(params[:id]) # Establecer @tweet solo si no está definida
     @replies = Tweet.where(replied_to_id: @tweet.id).order(created_at: :desc) # Obtiene las respuestas relacionadas
-  
+    @user = @tweet.user
     # O también podrías hacerlo utilizando la asociación si la tienes configurada:
     # @replies = @tweet.replies
   
@@ -29,6 +27,7 @@ class TweetsController < ApplicationController
   # GET /tweets/new
   def new
     @tweet = Tweet.new
+    @tweet.user_id = current_user.id
   end
 
   # GET /tweets/1/edit
