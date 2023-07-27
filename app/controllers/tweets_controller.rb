@@ -5,13 +5,13 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.sort_by { |tweet| tweet.created_at }.reverse
   end
 
   # GET /tweets/1
   def show
     @tweet ||= Tweet.find(params[:id]) # Establecer @tweet solo si no está definida
-    @replies = Tweet.where(replied_to_id: @tweet.id) # Obtiene las respuestas relacionadas
+    @replies = Tweet.where(replied_to_id: @tweet.id).order(created_at: :desc) # Obtiene las respuestas relacionadas
   
     # O también podrías hacerlo utilizando la asociación si la tienes configurada:
     # @replies = @tweet.replies

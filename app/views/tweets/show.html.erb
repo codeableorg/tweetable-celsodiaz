@@ -1,12 +1,8 @@
 <%# tweets/show.html.erb %>
 <h1>Tweet Detail</h1>
 
-<div>
-  <p><strong>Body:</strong> <%= @tweet.body %></p>
-  <p><strong>Replies Count:</strong> <%= @tweet.replies_count %></p>
-  <p><strong>Likes Count:</strong> <%= @tweet.likes_count %></p>
-  <!-- Mostrar otros detalles del tweet -->
-</div>
+<%= render @tweet %>
+<%= link_to "Back to tweets", tweets_path %>
 
 <hr>
 
