@@ -27,7 +27,7 @@ class TweetsController < ApplicationController
   # GET /tweets/new
   def new
     @tweet = Tweet.new
-    @tweet.user_id = current_user.id
+    @user = current_user 
   end
 
   # GET /tweets/1/edit
@@ -38,7 +38,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.replied_to_id = params[:tweet][:replied_to_id] # Establecer el tweet al que se responde
-  
+    @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
       if @tweet.replied_to_id.present?
         redirect_to tweet_path(@tweet.replied_to_id), notice: "Reply was successfully created."

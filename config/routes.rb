@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  get '/new_user', to: 'users#new', as: :new_user
   resources :likes
   resources :tweets
   resources :users
