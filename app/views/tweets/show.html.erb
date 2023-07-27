@@ -1,20 +1,54 @@
-<strong>Tweet Detail</strong>
-<%= render @tweet %>
+<%# tweets/show.html.erb %>
+<h1>Tweet Detail</h1>
 
 <div>
-  <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %> |
-  <%= link_to "Back to tweets", tweets_path %>
-
-  <%= button_to "Destroy this tweet", @tweet, method: :delete %>
+  <p><strong>Body:</strong> <%= @tweet.body %></p>
+  <p><strong>Replies Count:</strong> <%= @tweet.replies_count %></p>
+  <p><strong>Likes Count:</strong> <%= @tweet.likes_count %></p>
+  <!-- Mostrar otros detalles del tweet -->
 </div>
+
 <hr>
 
-<%= render "tweets/form", { tweet: Tweet.new}%>
+<%= form_with(model: Tweet.new, url: tweets_path, local: true) do |form| %>
+  <% if @tweet.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this reply from being saved:</h2>
+      <ul>
+        <% @tweet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<% if @replies.present? %>
-  <div id="replies">
+ <%= form.hidden_field :replied_to_id, value: @tweet.id %>
+  <!-- El campo :replied_to_id se llenará automáticamente con el id del tweet original -->
+
+  <div>
+    <%= form.label :body, style: "display: block" %>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit "Reply" %>
+  </div>
+<% end %>
+
+<!-- Mostrar las respuestas relacionadas -->
+<div id="replies">
+  <% if @replies.present? %>
     <% @replies.each do |reply| %>
       <%= render reply %>
     <% end %>
-  </div>
-<% end %>
+  <% else %>
+    <p>No replies yet.</p>
+  <% end %>
+</div>
+
+

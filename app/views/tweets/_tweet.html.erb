@@ -24,10 +24,12 @@
 
   <div class="replies-likes">
     <p>
-      <%= link_to image_tag("icono-respuesta.png", alt: "replies") + " " + tweet.replies_count.to_s, tweet, style: "text-decoration: none;" %>
+      <%= link_to tweet_path(tweet), style: "text-decoration: none;" do %>
+      <%= image_tag("icono-respuesta.png", alt: "replies") + " " + tweet.replies_count.to_s %>
+      <% end %>
     </p>
     <p>
-    <%= link_to "#", class: "like-button", data: { tweet_id: tweet.id } do %>
+    <%= link_to "#", class: "like-button", data: { tweet_id: tweet.id } , style: "text-decoration: none;" do %>
     <%= image_tag "icono-me-gusta.png", alt: "likes" %>
     <%= tweet.likes_count %>
     <% end %>
