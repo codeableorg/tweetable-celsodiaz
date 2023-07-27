@@ -1,0 +1,49 @@
+/* styles.css */
+.tweet {
+    display: flex;
+    margin-bottom: 20px;
+     /* Puedes ajustar este valor según el ancho deseado para los tweets */
+  }
+  
+  .avatar {
+    margin-right: 10px;
+  }
+  
+  .avatar img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+  }
+  
+  .tweet-content {
+    flex: 1;
+  }
+  
+  .tweet strong {
+    font-weight: bold;
+  }
+  
+  .tweet p {
+    margin: 5px 0;
+  }
+  
+  .time-ago {
+    margin-top: 5px;
+  }
+  
+  .tweet-body {
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+    margin-bottom: 10px; /* Espacio entre el avatar y el cuerpo del tweet */
+  }
+  
+  .replies-likes {
+    max-width: 100%; /* Ocupa todo el ancho disponible */
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .replies-likes p {
+    margin-left: 10px;
+  }
+  
+  

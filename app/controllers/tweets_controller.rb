@@ -8,6 +8,15 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1
   def show
+    def show
+      @tweet = Tweet.find(params[:id]) # Obtiene el tweet principal
+      @replies = Tweet.where(replied_to_id: @tweet.id) # Obtiene las respuestas relacionadas
+  
+      # O también podrías hacerlo utilizando la asociación si la tienes configurada:
+      # @replies = @tweet.replies
+  
+      # Resto del código...
+    end
   end
 
   # GET /tweets/new

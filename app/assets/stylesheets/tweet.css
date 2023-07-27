@@ -1,0 +1,41 @@
+/* styles.css */
+.tweet-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-width: 300px; /* Tamaño específico para el contenedor de tarjeta */
+    /* Resto de los estilos para la tarjeta (como colores de fondo, sombras, etc.) */
+  }
+  
+  .tweet {
+    display: flex;
+    /* Resto de los estilos para los tweets (como ya los tenías) */
+  }
+  
+  .avatar {
+    margin-right: 10px;
+    /* Resto de los estilos para el avatar (como ya los tenías) */
+  }
+  
+  .tweet-content {
+    flex: 1;
+    /* Resto de los estilos para el contenido del tweet (como ya los tenías) */
+  }
+  
+  .tweet-body {
+    margin-bottom: 10px;
+    /* Resto de los estilos para el cuerpo del tweet (como ya los tenías) */
+  }
+  
+  .replies-likes {
+    display: flex;
+    justify-content: flex-end;
+    /* Resto de los estilos para las respuestas y me gusta (como ya los tenías) */
+  }
+  
+  .replies-likes p {
+    margin-left: 10px;
+  }
+  
+  

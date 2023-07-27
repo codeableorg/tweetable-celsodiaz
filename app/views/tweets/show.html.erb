@@ -7,3 +7,12 @@
 
   <%= button_to "Destroy this tweet", @tweet, method: :delete %>
 </div>
+<hr>
+
+<%= render "tweets/form", { tweet: Tweet.new}%>
+
+<div id="replies">
+  <% @replies.each do |reply| %>
+    <%= render reply %>
+  <% end %>
+</div>
