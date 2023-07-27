@@ -22,13 +22,13 @@
   <!-- El campo :replied_to_id se llenará automáticamente con el id del tweet original -->
 
   <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, 
+    placeholder: 
+    "Escribe tu respuesta aqui",
+     rows: 6, cols: 40 %>
+    <%= form.submit "Tweet" %>
   </div>
-
-  <div>
-    <%= form.submit "Reply" %>
-  </div>
+  
 <% end %>
 
 <!-- Mostrar las respuestas relacionadas -->
@@ -38,7 +38,6 @@
       <%= render reply %>
     <% end %>
   <% else %>
-    <p>No replies yet.</p>
   <% end %>
 </div>
 

@@ -12,18 +12,11 @@
   <% end %>
 
   <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.label :replies_count, style: "display: block" %>
-    <%= form.number_field :replies_count %>
-  </div>
-
-  <div>
-    <%= form.label :likes_count, style: "display: block" %>
-    <%= form.number_field :likes_count %>
+    <%= form.text_area :body, 
+    placeholder: 
+    "Escribe tu tweet aquí... Por ejemplo: ¡Hola, Twitter! Estoy emocionado por compartir mis ideas en 280 caracteres.",
+     rows: 8, cols: 50 %>
+    <%= form.submit "Tweet" %>
   </div>
 
   <% if @user.present? %>
@@ -31,8 +24,4 @@
   <% end %>
 
   <%= form.hidden_field :replied_to_id%>
-
-  <div>
-  <%= form.submit "Tweet" %>
-</div>
 <% end %>
