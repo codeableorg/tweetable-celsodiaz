@@ -30,8 +30,8 @@
 
 <h3>Tweets (<%= @user.tweets.count %>):</h3>
 <div id="user-tweets">
-  <% if @user.tweets.any? %>
-    <% @user.tweets.each do |tweet| %>
+  <% if @tweets.any? %>
+    <% @tweets.each do |tweet| %>
       <%= render tweet %>
     <% end %>
   <% else %>

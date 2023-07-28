@@ -1,6 +1,12 @@
 <h1>Editing tweet</h1>
 
-<%= render "form", tweet: @tweet %>
+<%= form_for(@tweet, url: tweet_path(@tweet), method: :patch) do |form| %>
+  <div>
+    <%= form.text_area :body,
+      rows: 8, cols: 50 %>
+    <%= form.submit "Update" %>
+  </div>
+<% end %>
 
 <br>
 

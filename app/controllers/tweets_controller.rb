@@ -32,6 +32,8 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
+    @tweet = Tweet.find(params[:id])
+    session[:return_to] = request.referer
   end
 
   # POST /tweets
@@ -53,10 +55,11 @@ class TweetsController < ApplicationController
 
   # PATCH/PUT /tweets/1
   def update
+    @tweet = Tweet.find(params[:id])
     if @tweet.update(tweet_params)
-      redirect_to @tweet, notice: "Tweet was successfully updated."
+      redirect_to session.delete(:return_to), notice: "Tweet was successfully updated."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
