@@ -24,31 +24,32 @@
   </div>
 
   <div class="replies-likes">
-    <p>
-      <%= link_to tweet_path(tweet), style: "text-decoration: none;" do %>
-        <%= image_tag("icono-respuesta.png", alt: "replies") + " " + tweet.replies_count.to_s %>
-      <% end %>
-    </p>
-    <p>
-      <%= link_to "#", class: "like-button", data: { tweet_id: tweet.id }, style: "text-decoration: none;" do %>
-        <%= image_tag "icono-me-gusta.png", alt: "likes" %>
-        <%= tweet.likes_count %>
-      <% end %>
-    </p>
-
-    <!-- Enlaces Edit y Destroy con imágenes -->
     <% if current_user == tweet.user %>
-      <%= link_to edit_tweet_path(tweet) do %>
-        <%= image_tag("icon-edit.png", alt: "Edit", title: "Edit") %>
-      <% end %>
-      |
-      <%= link_to tweet_path(tweet), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this tweet?" } do %>
-        <%= image_tag("icon-trash.png", alt: "Destroy", title: "Destroy") %>
-      <% end %>
+      <div class="edit-destroy">
+        <%= link_to edit_tweet_path(tweet) do %>
+          <%= image_tag("icon-edit.png", alt: "Edit", title: "Edit") %>
+        <% end %>
+        <%= link_to tweet_path(tweet), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this tweet?" } do %>
+          <%= image_tag("icon-trash.png", alt: "Destroy", title: "Destroy") %>
+        <% end %>
+      </div>
     <% end %>
+
+    <div class="reply-like">
+      <p>
+        <%= link_to tweet_path(tweet), style: "text-decoration: none;" do %>
+          <%= image_tag("icono-respuesta.png", alt: "replies") + " " + tweet.replies_count.to_s %>
+        <% end %>
+      </p>
+      <p>
+        <%= link_to "#", class: "like-button", data: { tweet_id: tweet.id }, style: "text-decoration: none;" do %>
+          <%= image_tag "icono-me-gusta.png", alt: "likes" %>
+          <%= tweet.likes_count %>
+        <% end %>
+      </p>
+    </div>
   </div>
 </div>
-
 
 
 
