@@ -62,8 +62,12 @@ class TweetsController < ApplicationController
 
   # DELETE /tweets/1
   def destroy
+    @tweet = Tweet.find(params[:id])
     @tweet.destroy
-    redirect_to tweets_url, notice: "Tweet was successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Tweet deleted successfully!" }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@tweet) }
+    end
   end
 
   private
