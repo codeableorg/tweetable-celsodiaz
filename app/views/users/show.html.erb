@@ -7,23 +7,32 @@
   </div>
 <%end%>
 <p>
-    <strong>Username:</strong>
-    <%= @user.username %>
+    <strong><%= @user.username %></strong>
   </p>
 
   <p>
-    <strong>Name:</strong>
-    <%= @user.name %>
+    <strong>@<%= @user.name %></strong>
   </p>
 
   <p>
-    <strong>Role:</strong>
-    <%= @user.role %>
-  </p>
+  <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
+</p>
+
 </div>
 <div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
 
   <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
+
+<h3>Tweets (<%= @user.tweets.count %>):</h3>
+<div id="user-tweets">
+  <% if @user.tweets.any? %>
+    <% @user.tweets.each do |tweet| %>
+      <%= render tweet %>
+    <% end %>
+  <% else %>
+    <p>No tweets yet.</p>
+  <% end %>
 </div>
