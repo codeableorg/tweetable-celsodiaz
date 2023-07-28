@@ -1,29 +1,31 @@
 <p style="color: green"><%= notice %></p>
-<div>
 
-<% if @user.avatar.attached? %>
-  <div>
-    <%= image_tag @user.avatar, alt: "user avatar"%>
-  </div>
-<%end%>
-<p>
+<div>
+  <% if @user.avatar.attached? %>
+    <div>
+      <%= image_tag @user.avatar, alt: "user avatar"%>
+    </div>
+  <% end %>
+  <p>
     <strong><%= @user.username %></strong>
   </p>
-
   <p>
     <strong>@<%= @user.name %></strong>
   </p>
-
   <p>
-  <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
-</p>
-
+    <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
+  </p>
 </div>
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+<div>
+  <% if current_user == @user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <% end %>
+  <%= link_to "Back ", root_path %>
+  
+  <% if current_user == @user %>
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  <% end %>
 </div>
 
 <h3>Tweets (<%= @user.tweets.count %>):</h3>
@@ -36,3 +38,4 @@
     <p>No tweets yet.</p>
   <% end %>
 </div>
+
