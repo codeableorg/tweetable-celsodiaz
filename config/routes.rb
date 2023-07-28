@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: :callbacks }
   get '/new_user', to: 'users#new', as: :new_user
   resources :likes
   resources :tweets
