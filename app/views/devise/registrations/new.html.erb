@@ -1,5 +1,15 @@
 <h2><strong>Create an account</strong></h2>
 
+<div>
+<p>CONTINUE WITH</p>
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= button_to "#{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
+  <% end %>
+<% end %>
+<p>OR</p>
+</div>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -46,5 +56,6 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+<p>Already a member?<p>
 
 <%= render "devise/shared/links" %>

@@ -28,16 +28,6 @@
   </div>
 
   <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.password_field :password %>
-  </div>
-  
-  <div>
-    <%= form.label :password_confirmation, style: "display: block" %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
-  <div>
     <% if @user.avatar.attached? %>
       <%= image_tag url_for(@user.avatar), style: "border-radius: 50%; max-width: 50px; max-height: 50px;" %>
     <% end %>
@@ -49,13 +39,22 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, style: "display: block" %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= form.submit "Update" %>
   </div>
 <% end %>
 
 <br>
 
 <div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back ", root_path %>
+  <%= link_to "Back ", @user %>
 </div>
