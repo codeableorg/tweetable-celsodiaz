@@ -12,6 +12,7 @@ class TweetsController < ApplicationController
     @tweet ||= Tweet.find(params[:id]) # Establecer @tweet solo si no está definida
     @replies = Tweet.where(replied_to_id: @tweet.id).order(created_at: :desc) # Obtiene las respuestas relacionadas
     @user = @tweet.user
+    authorize @tweet
     # O también podrías hacerlo utilizando la asociación si la tienes configurada:
     # @replies = @tweet.replies
   
@@ -23,23 +24,27 @@ class TweetsController < ApplicationController
     @tweet.increment!(:likes_count)
     puts "Likes count after increment: #{@tweet.likes_count}"
     render json: { likes_count: @tweet.likes_count }
+    authorize @tweet
   end
 
   # GET /tweets/new
   def new
     @tweet = Tweet.new
-    @user = current_user 
+    @user = current_user
+    authorize @tweet
   end
 
   # GET /tweets/1/edit
   def edit
     @tweet = Tweet.find(params[:id])
     session[:return_to] = request.referer
+    authorize @tweet
   end
 
   # POST /tweets
   def create
     @tweet = Tweet.new(tweet_params)
+    authorize @tweet
     @tweet.replied_to_id = params[:tweet][:replied_to_id] # Establecer el tweet al que se responde
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
@@ -57,6 +62,7 @@ class TweetsController < ApplicationController
   # PATCH/PUT /tweets/1
   def update
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
     if @tweet.update(tweet_params)
       redirect_to session.delete(:return_to), notice: "Tweet was successfully updated."
     else
@@ -67,6 +73,7 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   def destroy
     @tweet = Tweet.find(params[:id])
+    authorize @tweet
     @tweet.destroy
     respond_to do |format|
       format.html { redirect_to root_path, notice: "Tweet deleted successfully!" }

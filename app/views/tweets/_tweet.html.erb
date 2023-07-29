@@ -24,16 +24,19 @@
   </div>
 
   <div class="replies-likes">
-    <% if current_user == tweet.user %>
-      <div class="edit-destroy">
-        <%= link_to edit_tweet_path(tweet) do %>
-          <%= image_tag("icon-edit.png", alt: "Edit", title: "Edit") %>
-        <% end %>
+  <% if policy(tweet).edit? %>
+    <div class="edit-destroy">
+      <%= link_to edit_tweet_path(tweet) do %>
+        <%= image_tag("icon-edit.png", alt: "Edit", title: "Edit") %>
+      <% end %>
+      <% if policy(tweet).destroy? %>
         <%= link_to tweet_path(tweet), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this tweet?" } do %>
           <%= image_tag("icon-trash.png", alt: "Destroy", title: "Destroy") %>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
     <div class="reply-like">
       <p>

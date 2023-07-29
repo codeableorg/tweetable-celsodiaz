@@ -13,6 +13,9 @@ class User < ApplicationRecord
     has_many :tweets, dependent: :destroy
     has_many :likes, dependent: :destroy
 
+    #Enums for role
+    enum :role, { admin: 0, member: 1}
+
     def self.from_omniauth(auth_hash)
       where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create do |user|
         user.provider = auth_hash.provider
