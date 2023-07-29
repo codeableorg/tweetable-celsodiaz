@@ -28,7 +28,7 @@
   <% end %>
 </div>
 
-<h3>Tweets (<%= @user.tweets.count %>):</h3>
+<h3>Tweets (<%= @user.tweets.count %>)</h3>
 <div id="user-tweets">
   <% if @tweets.any? %>
     <% @tweets.each do |tweet| %>
@@ -38,4 +38,16 @@
     <p>No tweets yet.</p>
   <% end %>
 </div>
+
+<h3>Likes (<%= @likes.count %>)</h3>
+<div id="user-likes">
+  <% if @likes.any? %>
+    <% @likes.each do |like| %>
+      <%= render like.tweet %>
+    <% end %>
+  <% else %>
+    <p>No likes created by <%= @user.username %> yet.</p>
+  <% end %>
+</div>
+
 
