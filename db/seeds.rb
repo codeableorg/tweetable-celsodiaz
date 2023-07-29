@@ -5,23 +5,25 @@ Tweet.destroy_all
 Like.destroy_all
 
 puts "Seeding users"
-admin = User.create!(
+admin = User.new(
   email: 'admin@mail.com',
   password: 'supersecret',
   name: 'Admin User',
   username: 'admin',
   role: 'admin'
 )
+puts "admin_member not created. Errors: #{admin.errors.full_messages}" unless admin.save
 
 members = []
 4.times do |n|
-  user = User.create!(
+  user = User.new(
     email: "member#{n + 1}@mail.com",
     password: 'password',
     name: "Member User #{n + 1}",
     username: "member#{n + 1}",
     role: 'member'
   )
+  puts "member not created. Errors: #{user.errors.full_messages}" unless user.save
   members << user
 end
 
