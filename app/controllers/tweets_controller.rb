@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[show edit update destroy]
+  before_action :set_tweet, only: %i[like edit update destroy]
 
   # GET /tweets
   def index
@@ -20,7 +20,6 @@ class TweetsController < ApplicationController
   end
 
   def like
-    @tweet = Tweet.find(params[:id])
     @tweet.increment!(:likes_count)
     puts "Likes count after increment: #{@tweet.likes_count}"
     render json: { likes_count: @tweet.likes_count }
@@ -36,7 +35,6 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1/edit
   def edit
-    @tweet = Tweet.find(params[:id])
     session[:return_to] = request.referer
     authorize @tweet
   end
@@ -61,7 +59,6 @@ class TweetsController < ApplicationController
 
   # PATCH/PUT /tweets/1
   def update
-    @tweet = Tweet.find(params[:id])
     authorize @tweet
     if @tweet.update(tweet_params)
       redirect_to session.delete(:return_to), notice: "Tweet was successfully updated."
@@ -72,7 +69,6 @@ class TweetsController < ApplicationController
 
   # DELETE /tweets/1
   def destroy
-    @tweet = Tweet.find(params[:id])
     authorize @tweet
     @tweet.destroy
     respond_to do |format|
