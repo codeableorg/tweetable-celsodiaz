@@ -17,7 +17,7 @@
           <h2>TWEETABLE</h2>
       <%end%>
       <%if user_signed_in?%>
-        Welcome @<%= current_user.name %>
+        Welcome @<%= current_user.username %>
         <%= link_to "Profile", user_path(current_user) %>
         <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }%>
       <%end%>    
