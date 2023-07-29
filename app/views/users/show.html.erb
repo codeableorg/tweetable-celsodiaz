@@ -1,4 +1,3 @@
-<p style="color: green"><%= notice %></p>
 
 <div>
   <% if @user.avatar.attached? %>
@@ -27,27 +26,31 @@
     <%= button_to "Destroy this user", @user, method: :delete %>
   <% end %>
 </div>
+<h3>
+<%= link_to "Tweets (#{@tweets.count})", user_path(@user, show_tweets: true) , style: "margin-right: 20px; text-decoration: none;" %>      
+<%= link_to "Likes (#{@likes.count})", user_path(@user, show_likes: true),style: "text-decoration: none;" %>
+</h3>
 
-<h3>Tweets (<%= @user.tweets.count %>)</h3>
-<div id="user-tweets">
-  <% if @tweets.any? %>
-    <% @tweets.each do |tweet| %>
-      <%= render tweet %>
+<% if @show_tweets %>
+  <div id="user-tweets">
+    <% if @tweets.any? %>
+      <% @tweets.each do |tweet| %>
+        <%= render tweet %>
+      <% end %>
+    <% else %>
+      <p>No tweets yet.</p>
     <% end %>
-  <% else %>
-    <p>No tweets yet.</p>
-  <% end %>
-</div>
-
-<h3>Likes (<%= @likes.count %>)</h3>
-<div id="user-likes">
-  <% if @likes.any? %>
-    <% @likes.each do |like| %>
-      <%= render like.tweet %>
+  </div>
+<% elsif @show_likes %>
+  <div id="user-likes">
+    <% if @likes.any? %>
+      <% @likes.each do |like| %>
+        <%= render like.tweet %>
+      <% end %>
+    <% else %>
+      <p>No likes created by <%= @user.username %> yet.</p>
     <% end %>
-  <% else %>
-    <p>No likes created by <%= @user.username %> yet.</p>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 

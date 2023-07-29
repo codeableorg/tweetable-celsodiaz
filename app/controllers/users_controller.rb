@@ -10,7 +10,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @tweets = @user.tweets.order(created_at: :desc)
-    @likes = @user.likes.includes(:tweet).order(created_at: :desc)
+    @likes = @user.likes.includes(:tweet).order("tweets.created_at DESC")
+
+    @show_tweets = params[:show_tweets] == "true"
+    @show_likes = params[:show_likes] == "true"
   end
 
   # GET /users/new
