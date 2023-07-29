@@ -12,7 +12,7 @@ class User < ApplicationRecord
     #Associations
     has_one_attached :avatar
     has_many :tweets, dependent: :destroy
-    has_many :like, dependent: :destroy
+    has_many :likes, dependent: :destroy
 
     def self.from_omniauth(auth_hash)
       where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create do |user|

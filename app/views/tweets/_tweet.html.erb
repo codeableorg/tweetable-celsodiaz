@@ -42,10 +42,7 @@
         <% end %>
       </p>
       <p>
-        <%= link_to "#", class: "like-button", data: { tweet_id: tweet.id }, style: "text-decoration: none;" do %>
-          <%= image_tag "icono-me-gusta.png", alt: "likes" %>
-          <%= tweet.likes_count %>
-        <% end %>
+        <%= render partial: 'likes/form', locals: { tweet: tweet } %>
       </p>
     </div>
   </div>

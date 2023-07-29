@@ -4,6 +4,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   def index
     @tweets = Tweet.all.sort_by { |tweet| tweet.created_at }.reverse
+    @user = current_user
   end
 
   # GET /tweets/1
