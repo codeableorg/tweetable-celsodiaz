@@ -1,4 +1,4 @@
-#   **Bienvenido al repositorio de Tweetable! 🤓 **
+#   Bienvenido al repositorio de Tweetable! 🤓 
 
 ![](https://s2-recruiting.cdn.greenhouse.io/external_greenhouse_job_boards/logos/400/873/900/original/Screen_Shot_2019-03-12_at_11.47.35.png?1573504685)
 
@@ -13,11 +13,13 @@
 	 code .'
 
 ####VSCode
-	rubocop -A
-	rubocop
-    rails db:migrate:reset
-    rails db:seed
-	rails server
+
+     rubocop -A
+     rubocop
+     rails db:migrate:reset
+	 rails db:seed
+	 rails server
+
 ### API
 `http://localhost:3000/api/tweets`
 
