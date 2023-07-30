@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ @import 'stylesheets/tweet';
+ @import 'stylesheets/tweet-header';
+ @import 'stylesheets/header';
+  @import "stylesheets/footer";

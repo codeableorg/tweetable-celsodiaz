@@ -1,0 +1,20 @@
+<%= form_with(model: Like.new, url: likes_path, local: true) do |form| %>
+  <div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+
+  <div>
+    <%= form.hidden_field :tweet_id, value: tweet.id %>
+  </div>
+
+  <div>
+   <p>
+    <% if current_user.likes.exists?(tweet: tweet) %>
+        <%= image_tag("icon-like-yes.png", alt: "likes") %>
+    <% else %>
+        <%= image_submit_tag("icon-like.png", alt: "Submit") %>
+      <% end %>
+      <%= tweet.likes_count %> 
+  </p>
+  </div>
+<% end %>

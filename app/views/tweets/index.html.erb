@@ -1,0 +1,14 @@
+<div class="container">
+<h1>Home</h1>
+<%= render "tweets/form", { tweet: Tweet.new } %>
+</div>
+<div id="tweets">
+  <% @tweets.each do |tweet| %>
+    <div class ="containe">
+    <% if tweet.replied_to_id.nil? %>
+      <%= render tweet %>
+    <% end %>
+    <div>
+  <% end %>
+</div>
+</div>

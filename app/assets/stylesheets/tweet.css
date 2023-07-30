@@ -1,0 +1,29 @@
+.tweet-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  max-width: 300px;
+display: flex;
+flex-direction: column;
+}
+
+.replies-likes {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.replies-likes .edit-destroy {
+display: flex;
+justify-content: flex-start;
+}
+
+.replies-likes .reply-like {
+display: flex;
+justify-content: flex-end;
+}
+
+.replies-likes a {
+margin-right: 10px;
+}
