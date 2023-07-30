@@ -36,9 +36,9 @@
       <% end %>
     </div>
   <% end %>
-</div>
 
-    <div class="reply-like">
+
+    <div class="replies-likes">
       <p>
         <%= link_to tweet_path(tweet), style: "text-decoration: none;" do %>
           <%= image_tag("icono-respuesta.png", alt: "replies") + " " + tweet.replies_count.to_s %>
@@ -49,6 +49,7 @@
       </p>
     </div>
   </div>
+</div>  
 </div>
 
 

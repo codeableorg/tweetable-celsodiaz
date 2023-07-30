@@ -1,6 +1,6 @@
 <h2><strong>Create an account</strong></h2>
 
-<div>
+<div class="container">
 <p>CONTINUE WITH</p>
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
@@ -9,7 +9,7 @@
 <% end %>
 <p>OR</p>
 </div>
-
+<div class="containe">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -57,5 +57,6 @@
   </div>
 <% end %>
 <p>Already a member?<p>
-
 <%= render "devise/shared/links" %>
+</div>
+</div>

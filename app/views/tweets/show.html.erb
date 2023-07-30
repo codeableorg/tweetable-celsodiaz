@@ -1,11 +1,12 @@
 <%# tweets/show.html.erb %>
+<div class="container">
 <h1>Tweet Detail</h1>
-
+<div class="containe">
 <%= render @tweet %>
 <%= link_to "Back to tweets", tweets_path %>
-
+</div>
 <hr>
-
+<div class="containe">
 <%= form_with(model: Tweet.new, url: tweets_path, local: true) do |form| %>
   <% if @tweet.errors.any? %>
     <div style="color: red">
@@ -30,15 +31,18 @@
   </div>
   
 <% end %>
+</div>
 
 <!-- Mostrar las respuestas relacionadas -->
 <div id="replies">
   <% if @replies.present? %>
     <% @replies.each do |reply| %>
+      <<div class="containe">>
       <%= render reply %>
+      </div>
     <% end %>
   <% else %>
   <% end %>
 </div>
-
+</div>
 
