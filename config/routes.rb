@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "tweets#index"
   post 'tweets/:id/like', to: 'tweets#like', as: 'like_tweet'
+
+  namespace :api do
+      resources :tweets, only: [:index, :show]
+  end  
 end
