@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = Tweet.all.sort_by { |tweet| tweet.created_at }.reverse
+    @tweets = Tweet.all.sort_by(&:created_at).reverse
     @user = current_user
   end
 
@@ -15,13 +15,13 @@ class TweetsController < ApplicationController
     authorize @tweet
     # O también podrías hacerlo utilizando la asociación si la tienes configurada:
     # @replies = @tweet.replies
-  
+
     # Resto del código...
   end
 
   def like
     @tweet.increment!(:likes_count)
-    puts "Likes count after increment: #{@tweet.likes_count}"
+    Rails.logger.debug { "Likes count after increment: #{@tweet.likes_count}" }
     render json: { likes_count: @tweet.likes_count }
     authorize @tweet
   end
@@ -55,7 +55,6 @@ class TweetsController < ApplicationController
       render :show
     end
   end
-  
 
   # PATCH/PUT /tweets/1
   def update
@@ -78,13 +77,14 @@ class TweetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def tweet_params
-      params.require(:tweet).permit(:body, :replies_count, :likes_count, :user_id, :replied_to_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def tweet_params
+    params.require(:tweet).permit(:body, :replies_count, :likes_count, :user_id, :replied_to_id)
+  end
 end

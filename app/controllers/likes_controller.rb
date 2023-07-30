@@ -1,12 +1,11 @@
 class LikesController < ApplicationController
   before_action :set_like, only: %i[destroy]
   before_action :authenticate_user!
-  
 
   # POST /likes
   def create
     tweet = Tweet.find(params[:like][:tweet_id])
-    current_user.likes.create(tweet: tweet)
+    current_user.likes.create(tweet:)
     redirect_back(fallback_location: root_path)
   end
 
