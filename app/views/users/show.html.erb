@@ -1,0 +1,59 @@
+
+<div class="container">
+  <% if @user.avatar.attached? %>
+  <div>
+    <%= image_tag @user.avatar, alt: "user avatar", style: "border-radius: 50%; width: 150px; height: 150px;" %>
+  </div>
+<% end %>
+  <p>
+    <strong><%= @user.username %></strong>
+  </p>
+  <p>
+    <strong>@<%= @user.name %></strong>
+  </p>
+  <p>
+    <%= @user.created_at.strftime("Joined on %B %d, %Y") %>
+  </p>
+</div>
+
+<div class="containe">
+  <% if current_user == @user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <% end %>
+  <%= link_to "Back ", root_path %>
+  
+  <% if current_user == @user %>
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  <% end %>
+</div>
+
+<div class="container">
+<h3>
+<%= link_to "Tweets (#{@tweets.count})", user_path(@user, show_tweets: true) , style: "margin-right: 20px; text-decoration: none;" %>      
+<%= link_to "Likes (#{@likes.count})", user_path(@user, show_likes: true),style: "text-decoration: none;" %>
+</h3>
+
+<% if @show_tweets %>
+  <div id="user-tweets">
+    <% if @tweets.any? %>
+      <% @tweets.each do |tweet| %>
+        <%= render tweet %>
+      <% end %>
+    <% else %>
+      <p>No tweets yet.</p>
+    <% end %>
+  </div>
+<% elsif @show_likes %>
+  <div id="user-likes">
+    <% if @likes.any? %>
+      <% @likes.each do |like| %>
+        <%= render like.tweet %>
+      <% end %>
+    <% else %>
+      <p>No likes created by <%= @user.username %> yet.</p>
+    <% end %>
+  </div>
+<% end %>
+</div>
+</div>
+

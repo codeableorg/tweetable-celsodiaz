@@ -1,0 +1,48 @@
+<%# tweets/show.html.erb %>
+<div class="container">
+<h1>Tweet Detail</h1>
+<div class="containe">
+<%= render @tweet %>
+<%= link_to "Back to tweets", tweets_path %>
+</div>
+<hr>
+<div class="containe">
+<%= form_with(model: Tweet.new, url: tweets_path, local: true) do |form| %>
+  <% if @tweet.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@tweet.errors.count, "error") %> prohibited this reply from being saved:</h2>
+      <ul>
+        <% @tweet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <%= form.hidden_field :replied_to_id, value: @tweet.id %>
+  <!-- El campo :replied_to_id se llenará automáticamente con el id del tweet original -->
+
+  <div>
+    <%= form.text_area :body, 
+    placeholder: 
+    "Escribe tu respuesta aqui",
+     rows: 6, cols: 40 %>
+    <%= form.submit "Tweet" %>
+  </div>
+  
+<% end %>
+</div>
+
+<!-- Mostrar las respuestas relacionadas -->
+<div id="replies">
+  <% if @replies.present? %>
+    <% @replies.each do |reply| %>
+      <<div class="containe">>
+      <%= render reply %>
+      </div>
+    <% end %>
+  <% else %>
+  <% end %>
+</div>
+</div>
+
